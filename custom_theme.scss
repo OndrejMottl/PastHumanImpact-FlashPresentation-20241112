@@ -200,18 +200,12 @@ h2,
 .reveal .slides figure,
 .reveal .slides video,
 .reveal .slides .reveal-image {
-  background-color: $color-secondary;
   max-width: 100%;
   width: auto;
   height: auto;
   display: block;
   margin: 0 auto;
   box-sizing: border-box;
-}
-
-.cell-output {
-  background-color: $color-secondary;
-  border-radius: 4px;
 }
 
 /* Specialised sections */
