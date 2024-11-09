@@ -10,20 +10,22 @@ $blockMargin: 10px;
 $largeMargin: 20px;
 
 // Colors
+$white: #ffffffff;
 $black: #000000ff;
 $gray: #808080ff;
-$byzantium: #8f286fff;
-$harvest-gold: #eca400ff;
-$persian-green: #1b998bff;
-$cerulean: #006992ff;
-$white: #ffffffff;
+$satin-gold: #c99b38ff;
+$myrtle-green: #1f6f6fff;
+$forest-green: #64b264ff;
+
+
+
 
 $color-primary: $black !default;
 $color-secondary: $white !default;
 
-$color-high-primary: $byzantium !default;
-$color-high-secondary: $harvest-gold !default;
-$color-high-tertiary: $persian-green !default;
+$color-high-primary: $satin-gold !default;
+$color-high-secondary: $myrtle-green !default;
+$color-high-tertiary: $forest-green !default;
 
 $body-color: $color-primary !default;
 $link-color: $color-high-tertiary !default;
@@ -43,7 +45,6 @@ $headingFont: "League Gothic", sans-serif !default;
 $headingColor: $color-high-primary;
 $headingLineHeight: 1.2;
 $headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
 $headingTextShadow: none;
 $headingFontWeight: normal;
 
@@ -117,9 +118,34 @@ a {
   color: $white;
 }
 
+.text-color-darker {
+  filter: brightness(50%);
+}
+
+.text-color-brigher {
+  filter: brightness(250%);
+}
+
+.text-gray {
+  color: $gray;
+}
+
 .textcenter {
   text-align: center;
 }
+
+.text-smaller {
+  font-size: $mainFontSize * 0.7;
+}
+
+.center-vertical {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 
 /* Headings */
 h1,
@@ -129,10 +155,10 @@ h1,
   color: $headingColor;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
-  text-transform: $headingTextTransform;
   text-shadow: $heading1TextShadow;
   font-weight: $headingFontWeight;
   margin: $headingMargin;
+  text-align: center;
 }
 
 h2,
@@ -142,11 +168,10 @@ h2,
   color: $headingColor;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
-  text-transform: $headingTextTransform;
   font-weight: $headingFontWeight;
   margin: $headingMargin;
+  text-align: center;
 }
-
 
 /* Slide content layout */
 .reveal .slides {
@@ -201,7 +226,9 @@ h2,
   border-bottom: 3px solid $gray;
   border-right: 3px solid $gray;
   background-color: $color-secondary;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* Code block */
