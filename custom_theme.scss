@@ -10,20 +10,28 @@ $blockMargin: 10px;
 $largeMargin: 20px;
 
 // Colors
+$white: #ffffffff;
 $black: #000000ff;
 $gray: #808080ff;
-$byzantium: #8f286fff;
-$harvest-gold: #eca400ff;
-$persian-green: #1b998bff;
-$cerulean: #006992ff;
-$white: #ffffffff;
+
+$mint-cream: #f2f7f2ff;
+
+$indigo: #540d6eff;
+$red-crayola: #e84855ff;
+$tropical-indigo: #8a84e2ff;
+
+$satin-sheen-gold: #c99b38ff;
+$caribbean-current: #1f6f6fff;
 
 $color-primary: $black !default;
-$color-secondary: $white !default;
+$color-secondary: $mint-cream !default;
 
-$color-high-primary: $byzantium !default;
-$color-high-secondary: $harvest-gold !default;
-$color-high-tertiary: $persian-green !default;
+$color-high-primary: $indigo !default;
+$color-high-secondary: $tropical-indigo !default;
+$color-high-tertiary: $red-crayola !default;
+
+$color-high-human: $satin-sheen-gold !default;
+$color-high-climate: $caribbean-current !default;
 
 $body-color: $color-primary !default;
 $link-color: $color-high-tertiary !default;
@@ -43,7 +51,6 @@ $headingFont: "League Gothic", sans-serif !default;
 $headingColor: $color-high-primary;
 $headingLineHeight: 1.2;
 $headingLetterSpacing: normal;
-$headingTextTransform: uppercase;
 $headingTextShadow: none;
 $headingFontWeight: normal;
 
@@ -102,23 +109,61 @@ a {
   color: $color-secondary;
 }
 
+.text-color-gray {
+  color: $gray;
+}
+
 .text-color-highlight-primary {
   background-color: $color-high-primary;
-  color: $white;
+  color: $mint-cream;
 }
 
 .text-color-highlight-secondary {
   background-color: $color-high-secondary;
-  color: $white;
+  color: $mint-cream;
 }
 
 .text-color-highlight-tertiary {
   background-color: $color-high-tertiary;
-  color: $white;
+  color: $mint-cream;
+}
+
+.text-color-highlight-human {
+  background-color: $color-high-human;
+  color: $mint-cream;
+}
+
+.text-color-highlight-climate {
+  background-color: $color-high-climate;
+  color: $mint-cream;
+}
+
+.text-color-darker {
+  filter: brightness(50%);
+}
+
+.text-color-brigher {
+  filter: brightness(250%);
+}
+
+.text-gray {
+  color: $gray;
 }
 
 .textcenter {
   text-align: center;
+}
+
+.text-smaller {
+  font-size: $mainFontSize * 0.7;
+}
+
+.center-vertical {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 /* Headings */
@@ -129,10 +174,10 @@ h1,
   color: $headingColor;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
-  text-transform: $headingTextTransform;
   text-shadow: $heading1TextShadow;
   font-weight: $headingFontWeight;
   margin: $headingMargin;
+  text-align: center;
 }
 
 h2,
@@ -142,11 +187,10 @@ h2,
   color: $headingColor;
   line-height: $headingLineHeight;
   letter-spacing: $headingLetterSpacing;
-  text-transform: $headingTextTransform;
   font-weight: $headingFontWeight;
   margin: $headingMargin;
+  text-align: center;
 }
-
 
 /* Slide content layout */
 .reveal .slides {
@@ -201,7 +245,9 @@ h2,
   border-bottom: 3px solid $gray;
   border-right: 3px solid $gray;
   background-color: $color-secondary;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 /* Code block */
