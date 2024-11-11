@@ -262,13 +262,6 @@ save_local_figure(
 fig_pollen_map_europe_temperate <-
   p0_map +
   ggplot2::geom_point(
-    data = data_records_meta_eu,
-    mapping = ggplot2::aes(
-      colour = col_common_gray # [config criteria]
-    ),
-    size = 1
-  ) +
-  ggplot2::geom_point(
     data = data_records_meta_eu_temperate,
     mapping = ggplot2::aes(
       colour = climatezone

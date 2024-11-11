@@ -172,7 +172,7 @@ include_local_figure("head_photo.png")
 
 ::::
 
-## Past Vegetation
+# Past Vegetation
 
 ```{r}
 #| label: pollen-map-full
@@ -189,6 +189,10 @@ over 1260 Fossil pollen records from the Neotoma database; over 75,000 individua
 #| label: pollen-map-europe
 include_local_figure("R_generated/pollen_map_europe.png")
 ```
+
+::: {.footer}
+Koppen-Geiger climate zones
+:::
 
 ## Temperate climate zone
 
@@ -533,7 +537,7 @@ include_local_figure("R_generated/summary_eu_with_density_climate.png")
 include_local_figure("Preprint/Figure2_h1_spatial_manual_edit.png")
 ```
 
-## Main findings {.inverse auto-animate="true"}
+# Main findings {.inverse auto-animate="true"}
 
 <br>
 
@@ -704,6 +708,13 @@ include_local_figure("head_photo.png")
 include_local_figure("Preprint/Figure1.png")
 ```
 
+## More examples
+
+```{r}
+#| label: more-examples
+include_local_figure("Preprint/Extended_data_figure_3_manual_edits.png")
+```
+
 ## Change in time
 
 ```{r}
@@ -731,3 +742,46 @@ include_local_figure("Preprint/Extended_data_figure_1.png")
 #| label: human-impact-overview
 include_local_figure("Preprint/Extended_data_figure_2.png")
 ```
+
+## General patterns - SPD
+
+```{r}
+#| label: general-patterns-spd
+include_local_figure("Preprint/Extended_data_figure_4_spd.png")
+```
+
+## General patterns - Events
+
+```{r}
+#| label: general-patterns-events
+include_local_figure("Preprint/Extended_data_figure_9.png")
+```
+
+## General patterns - MAT
+
+```{r}
+#| label: general-patterns-mat
+include_local_figure("Preprint/Extended_data_figure_5_temp_annual.png")
+```
+
+## General patterns - MTCO
+
+```{r}
+#| label: general-patterns-mtco
+include_local_figure("Preprint/Extended_data_figure_6_temp_cold.png")
+```
+
+## General patterns - MAPS
+
+```{r}
+#| label: general-patterns-maps
+include_local_figure("Preprint/Extended_data_figure_7_prec_summer.png")
+```
+
+## General patterns - MAPW
+
+```{r}
+#| label: general-patterns-mapw
+include_local_figure("Preprint/Extended_data_figure_8_prec_winter.png")
+```
+
