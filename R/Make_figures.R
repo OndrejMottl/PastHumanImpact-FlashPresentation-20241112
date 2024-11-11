@@ -65,7 +65,7 @@ data_paps_line <-
     names_to = "predictor",
     values_to = "value"
   ) %>%
-  add_predictor_as_factor()
+  add_predictor_names_as_factors()
 
 data_paps_density <-
   data_example_record_raw %>%
@@ -78,7 +78,7 @@ data_paps_density <-
     names_to = "predictor",
     values_to = "value"
   ) %>%
-  add_predictor_as_factor()
+  add_predictor_names_as_factors()
 
 data_climate_line <-
   data_example_record_raw %>%
@@ -92,8 +92,7 @@ data_climate_line <-
     names_to = "predictor",
     values_to = "value"
   ) %>%
-  add_predictor_as_factor()
-
+  add_predictor_names_as_factors()
 
 data_c14_prepared <-
   RUtilpol::get_latest_file(
@@ -124,7 +123,48 @@ data_human_density <-
     names_to = "predictor",
     values_to = "value"
   ) %>%
-  add_predictor_as_factor()
+  add_predictor_names_as_factors()
+
+data_impact_by_records <-
+  RUtilpol::get_latest_file(
+    file_name = "data_impact_by_records",
+    dir = here::here("Data")
+  ) %>%
+  add_region_as_factor() %>%
+  add_climatezone_as_factor() %>%
+  add_predictors_as_factor()
+
+data_impact_by_record_quantiles <-
+  RUtilpol::get_latest_file(
+    file_name = "data_impact_by_record_quantiles",
+    dir = here::here("Data")
+  ) %>%
+  add_region_as_factor() %>%
+  add_climatezone_as_factor() %>%
+  add_predictors_as_factor()
+
+data_impact_by_climatezone <-
+  RUtilpol::get_latest_file(
+    file_name = "data_impact_by_climatezone",
+    dir = here::here("Data")
+  ) %>%
+  add_region_as_factor() %>%
+  add_climatezone_as_factor() %>%
+  add_predictors_as_factor()
+
+data_impact_by_climatezone_eu <-
+  data_impact_by_climatezone %>%
+  dplyr::filter(
+    region == "Europe"
+  )
+
+data_impact_by_region <-
+  RUtilpol::get_latest_file(
+    file_name = "data_impact_by_region",
+    dir = here::here("Data")
+  ) %>%
+  add_region_as_factor() %>%
+  add_predictors_as_factor()
 
 #----------------------------------------------------------#
 # Figures -----
@@ -214,7 +254,9 @@ fig_pollen_map_europe <-
 
 save_local_figure(
   plot = fig_pollen_map_europe,
-  filename = "pollen_map_europe.png"
+  filename = "pollen_map_europe.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )
 
 fig_pollen_map_europe_temperate <-
@@ -240,7 +282,9 @@ fig_pollen_map_europe_temperate <-
 
 save_local_figure(
   plot = fig_pollen_map_europe_temperate,
-  filename = "pollen_map_europe_temperate.png"
+  filename = "pollen_map_europe_temperate.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )
 
 fig_pollen_map_example_record <-
@@ -267,7 +311,9 @@ fig_pollen_map_example_record <-
 
 save_local_figure(
   plot = fig_pollen_map_example_record,
-  filename = "pollen_map_example_record.png"
+  filename = "pollen_map_example_record.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )
 
 fig_map_example_record_bare <-
@@ -287,7 +333,9 @@ fig_map_example_record_bare <-
 
 save_local_figure(
   plot = fig_map_example_record_bare,
-  filename = "map_example_record_bare.png"
+  filename = "map_example_record_bare.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )
 
 fig_map_example_record_rc <-
@@ -316,7 +364,9 @@ fig_map_example_record_rc <-
 
 save_local_figure(
   plot = fig_map_example_record_rc,
-  filename = "map_example_record_rc.png"
+  filename = "map_example_record_rc.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )
 
 #--------------------------------------------------#
@@ -639,4 +689,234 @@ fig_example_with_importance <-
 save_local_figure(
   plot = fig_example_with_importance,
   filename = "example_with_importance.png"
+)
+
+#--------------------------------------------------#
+## Summary plot -----
+#--------------------------------------------------#
+
+sel_range <- c(0, 1)
+
+p_summary_0 <-
+  tibble::tibble() %>%
+  ggplot2::ggplot() +
+  ggplot2::coord_cartesian(
+    ylim = sel_range
+  ) +
+  ggplot2::theme(
+    plot.margin = grid::unit(c(0, 0, 0, 0), "mm"),
+    panel.spacing.y = grid::unit(5, "mm"),
+    legend.position = "none",
+    plot.background = ggplot2::element_rect(
+      fill = col_crema, # [config criteria]
+      colour = NA
+    ),
+    panel.background = ggplot2::element_rect(
+      fill = col_land, # [config criteria]
+      colour = NA
+    ),
+    strip.background = ggplot2::element_rect(
+      fill = col_crema, # [config criteria]
+      colour = NA
+    ),
+    legend.text = ggplot2::element_text(
+      size = text_size, # [config criteria]
+      color = col_common_gray # [config criteria]
+    ),
+    legend.title = ggplot2::element_text(
+      size = text_size, # [config criteria]
+      color = col_common_gray # [config criteria]
+    ),
+    text = ggplot2::element_text(
+      size = text_size, # [config criteria]
+      color = col_common_gray # [config criteria]
+    ),
+    axis.text.y = ggplot2::element_text(
+      size = text_size, # [config criteria]
+      color = col_common_gray # [config criteria]
+    ),
+    axis.title.y = ggplot2::element_text(
+      size = text_size, # [config criteria]
+      color = col_common_gray # [config criteria]
+    ),
+    line = ggplot2::element_line(
+      linewidth = line_size, # [config criteria]
+      color = col_common_gray # [config criteria]
+    ),
+    strip.text = ggplot2::element_text(
+      size = text_size, # [config criteria]
+      color = col_common_gray # [config criteria]
+    )
+  ) +
+  ggplot2::scale_y_continuous(
+    position = "right",
+    expand = c(0.05, 0.05),
+    breaks = seq(
+      min(sel_range),
+      max(sel_range),
+      by = max(sel_range) / 4
+    )
+  ) +
+  ggplot2::labs(
+    x = "",
+    y = "Ratio of importance"
+  ) +
+  ggplot2::geom_hline(
+    yintercept = seq(0, 1, 0.25),
+    col = colorspace::lighten(
+      col_common_gray, # [config criteria]
+      amount = 0.5
+    ),
+    linetype = 1,
+    alpha = 0.5,
+    size = line_size # [config criteria]
+  )
+
+fig_summary_example_record <-
+  data_impact_by_records %>%
+  dplyr::filter(dataset_id == 215) %>%
+  plot_summary_regions_points()
+
+save_local_figure(
+  plot = fig_summary_example_record,
+  filename = "summary_example_record.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height * 2 # [config criteria]
+)
+
+fig_summary_eu_temperate <-
+  data_impact_by_records %>%
+  dplyr::filter(region == "Europe") %>%
+  dplyr::filter(climatezone == "Temperate") %>%
+  plot_summary_regions_points()
+
+save_local_figure(
+  plot = fig_summary_eu_temperate,
+  filename = "summary_eu_temperate.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height * 2 # [config criteria]
+)
+
+fig_summary_eu_temperate_quantile <-
+  data_impact_by_record_quantiles %>%
+  dplyr::filter(region == "Europe") %>%
+  dplyr::filter(climatezone == "Temperate") %>%
+  plot_summary_regions_quatiles(
+    data_source_climatezone = data_impact_by_climatezone %>%
+      dplyr::filter(region == "Europe") %>%
+      dplyr::filter(climatezone == "Temperate"),
+  )
+
+save_local_figure(
+  plot = fig_summary_eu_temperate_quantile,
+  filename = "summary_eu_temperate_quantile.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height * 2 # [config criteria]
+)
+
+fig_summary_eu_quantile <-
+  data_impact_by_record_quantiles %>%
+  dplyr::filter(region == "Europe") %>%
+  plot_summary_regions_quatiles(
+    data_source_climatezone = data_impact_by_climatezone %>%
+      dplyr::filter(region == "Europe"),
+  )
+
+save_local_figure(
+  plot = fig_summary_eu_quantile,
+  filename = "summary_eu_quantile.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height # [config criteria]
+)
+
+fig_summary_density_eu <-
+  data_impact_by_records %>%
+  dplyr::filter(region == "Europe") %>%
+  plot_density_summary() +
+  ggplot2::theme(
+    axis.title.y = ggplot2::element_blank(),
+    axis.text.y = ggplot2::element_blank(),
+    axis.ticks.y = ggplot2::element_blank()
+  )
+
+
+fig_summary_eu_quantile_no_axis <-
+  fig_summary_eu_quantile +
+  ggplot2::theme(
+    strip.text.y = ggplot2::element_blank()
+  )
+
+fig_summary_eu_with_density <-
+  cowplot::plot_grid(
+    add_vertical_line(
+      plot = fig_summary_density_eu,
+      data_source = data_impact_by_region %>%
+        dplyr::filter(region == "Europe"),
+    ),
+    add_vertical_line(
+      plot = fig_summary_eu_quantile_no_axis,
+      data_source = data_impact_by_region %>%
+        dplyr::filter(region == "Europe"),
+    ),
+    nrow = 1,
+    align = "h",
+    rel_widths = c(2, 7)
+  )
+
+save_local_figure(
+  plot = fig_summary_eu_with_density,
+  filename = "summary_eu_with_density.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height # [config criteria]
+)
+
+fig_summary_eu_quantile_climate <-
+  data_impact_by_record_quantiles %>%
+  dplyr::filter(region == "Europe") %>%
+  plot_summary_regions_quatiles(
+    data_source_climatezone = data_impact_by_climatezone %>%
+      dplyr::filter(region == "Europe"),
+    sel_var = "climate",
+    sel_var_label = "Climate importance"
+  ) +
+  ggplot2::theme(
+    strip.text.y = ggplot2::element_blank()
+  )
+
+fig_summary_density_eu_climate <-
+  data_impact_by_records %>%
+  dplyr::filter(region == "Europe") %>%
+  plot_density_summary(
+    sel_var = "climate"
+  ) +
+  ggplot2::theme(
+    axis.title.y = ggplot2::element_blank(),
+    axis.text.y = ggplot2::element_blank(),
+    axis.ticks.y = ggplot2::element_blank()
+  )
+
+fig_summary_eu_with_density_climate <-
+  cowplot::plot_grid(
+    add_vertical_line(
+      plot = fig_summary_density_eu_climate,
+      data_source = data_impact_by_region %>%
+        dplyr::filter(region == "Europe"),
+      sel_var = "climate"
+    ),
+    add_vertical_line(
+      plot = fig_summary_eu_quantile_climate,
+      data_source = data_impact_by_region %>%
+        dplyr::filter(region == "Europe"),
+      sel_var = "climate"
+    ),
+    nrow = 1,
+    align = "h",
+    rel_widths = c(2, 7)
+  )
+
+save_local_figure(
+  plot = fig_summary_eu_with_density_climate,
+  filename = "summary_eu_with_density_climate.png",
+  sel_width = fig_height, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )

@@ -106,6 +106,7 @@ text_size <- 15
 line_size <- 0.1
 point_size <- 1
 
+region_label_wrap <- 10
 
 #--------------------------------------------------#
 # Colours -----
@@ -138,3 +139,54 @@ palette_predictors <- c(
   human = "#c99b38",
   climate = "#1f6f6f"
 )
+
+palette_ecozones_labels <-
+  palette_ecozones %>%
+  rlang::set_names(
+    nm = get_climatezone_label(names(palette_ecozones))
+  )
+
+data_climate_zones <-
+  tibble::tibble(
+    climatezone = factor(
+      c(
+        "Polar",
+        "Cold_Cold_Summer",
+        "Cold_Warm_Summer",
+        "Cold_Hot_Summer",
+        "Cold_Dry_Winter",
+        "Cold_Dry_Summer",
+        "Temperate",
+        "Temperate_Dry_Winter",
+        "Temperate_Dry_Summer",
+        "Tropical",
+        "Arid"
+      ),
+      levels = c(
+        "Polar",
+        "Cold_Cold_Summer",
+        "Cold_Warm_Summer",
+        "Cold_Hot_Summer",
+        "Cold_Dry_Winter",
+        "Cold_Dry_Summer",
+        "Temperate",
+        "Temperate_Dry_Winter",
+        "Temperate_Dry_Summer",
+        "Tropical",
+        "Arid"
+      )
+    ),
+    climatezone_label = c(
+      "Polar",
+      "Cold - Cold Summer",
+      "Cold - Warm Summer",
+      "Cold - Hot Summer",
+      "Cold - Dry Winter",
+      "Cold - Dry Summer",
+      "Temperate",
+      "Temperate - Dry Winter",
+      "Temperate - Dry Summer",
+      "Tropical",
+      "Arid"
+    )
+  )

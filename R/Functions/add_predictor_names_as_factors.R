@@ -1,4 +1,4 @@
-add_predictor_as_factor <- function(data_source) {
+add_predictor_names_as_factors <- function(data_source) {
   data_source %>%
     dplyr::mutate(
       predictor = dplyr::case_when(
