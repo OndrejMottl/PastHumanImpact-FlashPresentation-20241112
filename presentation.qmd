@@ -630,10 +630,10 @@ include_local_figure("QRs/qr_preprint.png")
 
 :::: {.columns}
 
-::: {.column width="20%"}
+::: {.column width="33%"}
 :::
 
-::: {.column width="60%"}
+::: {.column width="33%"}
 
 ```{r}
 #| label: qr_github
@@ -641,7 +641,7 @@ include_local_figure("QRs/qr_github.png")
 ```
 :::
 
-::: {.column width="20%"}
+::: {.column width="33%"}
 :::
 
 ::::
@@ -716,4 +716,18 @@ include_local_figure("Preprint/Figure3_h1_temporal_manual_edit.png")
 ```{r}
 #| label: internal-relationships
 include_local_figure("Preprint/Figure4_h2_manual_edit.png")
+```
+
+## Pollen data overview
+
+```{r}
+#| label: pollen-data-overview
+include_local_figure("Preprint/Extended_data_figure_1.png")
+```
+
+## Human impact overview
+
+```{r}
+#| label: human-impact-overview
+include_local_figure("Preprint/Extended_data_figure_2.png")
 ```
