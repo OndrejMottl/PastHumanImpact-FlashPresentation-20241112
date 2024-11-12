@@ -773,8 +773,8 @@ fig_summary_example_record <-
 save_local_figure(
   plot = fig_summary_example_record,
   filename = "summary_example_record.png",
-  sel_width = fig_height, # [config criteria]
-  sel_height = fig_height * 2 # [config criteria]
+  sel_width = fig_height / 2, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )
 
 fig_summary_eu_temperate <-
@@ -786,8 +786,8 @@ fig_summary_eu_temperate <-
 save_local_figure(
   plot = fig_summary_eu_temperate,
   filename = "summary_eu_temperate.png",
-  sel_width = fig_height, # [config criteria]
-  sel_height = fig_height * 2 # [config criteria]
+  sel_width = fig_height / 2, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )
 
 fig_summary_eu_temperate_quantile <-
@@ -803,8 +803,8 @@ fig_summary_eu_temperate_quantile <-
 save_local_figure(
   plot = fig_summary_eu_temperate_quantile,
   filename = "summary_eu_temperate_quantile.png",
-  sel_width = fig_height, # [config criteria]
-  sel_height = fig_height * 2 # [config criteria]
+  sel_width = fig_height / 2, # [config criteria]
+  sel_height = fig_height # [config criteria]
 )
 
 fig_summary_eu_quantile <-
